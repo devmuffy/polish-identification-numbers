@@ -1,0 +1,21 @@
+{
+    "name": "polish-identification-numbers",
+    "version": "0.1.0",
+    "license": "MIT",
+    "source": "src/index.ts",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "microbundle",
+        "test": "NODE_ENV=test jest",
+        "test:watch": "NODE_ENV=test jest --watch",
+        "watch": "microbundle watch"
+    },
+    "devDependencies": {
+        "@babel/plugin-transform-modules-commonjs": "7.13.8",
+        "@babel/preset-typescript": "7.13.0",
+        "@types/jest": "26.0.21",
+        "jest": "26.6.x",
+        "microbundle": "0.13.x",
+        "prettier": "2.2.x"
+    }
+}
