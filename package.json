@@ -1,21 +1,21 @@
 {
-    "name": "polish-identification-numbers",
-    "version": "0.1.0",
-    "license": "MIT",
-    "source": "src/index.ts",
-    "main": "dist/index.js",
-    "scripts": {
-        "build": "microbundle",
-        "test": "NODE_ENV=test jest",
-        "test:watch": "NODE_ENV=test jest --watch",
-        "watch": "microbundle watch"
-    },
-    "devDependencies": {
-        "@babel/plugin-transform-modules-commonjs": "7.16.8",
-        "@babel/preset-typescript": "7.16.7",
-        "@types/jest": "27.4.0",
-        "jest": "27.4.x",
-        "microbundle": "0.14.x",
-        "prettier": "2.5.x"
-    }
+  "name": "polish-identification-numbers",
+  "version": "0.1.0",
+  "license": "MIT",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "microbundle",
+    "test": "NODE_ENV=test jest",
+    "test:watch": "NODE_ENV=test jest --watch",
+    "watch": "microbundle watch"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "7.16.8",
+    "@babel/preset-typescript": "7.16.7",
+    "@types/jest": "27.4.0",
+    "jest": "27.4.x",
+    "microbundle": "0.14.x",
+    "prettier": "2.5.x"
+  }
 }
