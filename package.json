@@ -5,7 +5,8 @@
   "source": "src/index.ts",
   "main": "dist/index.js",
   "scripts": {
-    "build": "microbundle",
+    "clean": "rimraf dist",
+    "build": "npm run clean && microbundle",
     "test": "NODE_ENV=test jest",
     "test:watch": "NODE_ENV=test jest --watch",
     "watch": "microbundle watch"
@@ -15,7 +16,8 @@
     "@babel/preset-typescript": "7.16.7",
     "@types/jest": "27.4.0",
     "jest": "27.4.x",
-    "microbundle": "0.14.x",
-    "prettier": "2.5.x"
+    "microbundle": "0.14.2",
+    "prettier": "2.5.1",
+    "rimraf": "3.0.2"
   }
 }
