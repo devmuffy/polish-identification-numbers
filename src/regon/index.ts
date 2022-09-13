@@ -1,10 +1,14 @@
-import { calculateChecksum } from "../utils";
+import { calculateChecksum, NUMBERS_ONLY_REGEX } from "../utils";
 
 const weightsRegon9 = [8, 9, 2, 3, 4, 5, 6, 7];
 const weightsRegon14 = [2, 4, 8, 5, 0, 9, 7, 3, 6, 1, 2, 4, 8];
 
 export function isValidRegon(regon: string): boolean {
-  if (typeof regon !== "string" || ![9, 14].includes(regon.length)) {
+  if (
+    typeof regon !== "string" ||
+    ![9, 14].includes(regon.length) ||
+    !NUMBERS_ONLY_REGEX.test(regon)
+  ) {
     return false;
   }
 

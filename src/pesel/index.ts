@@ -1,9 +1,13 @@
-import { calculateChecksum } from "../utils";
+import { calculateChecksum, NUMBERS_ONLY_REGEX } from "../utils";
 
 const weights = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
 
 export function isValidPesel(pesel: string): boolean {
-  if (typeof pesel !== "string" || pesel.length !== 11) {
+  if (
+    typeof pesel !== "string" ||
+    pesel.length !== 11 ||
+    !NUMBERS_ONLY_REGEX.test(pesel)
+  ) {
     return false;
   }
 

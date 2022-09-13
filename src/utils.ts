@@ -1,3 +1,5 @@
+export const NUMBERS_ONLY_REGEX = /^\d+$/;
+
 export const calculateChecksum = (digits: number[], weights: number[]) => {
   if (digits.length !== weights.length) {
     throw new Error(
