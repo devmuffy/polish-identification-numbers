@@ -11,6 +11,10 @@ export function isValidPesel(pesel: string): boolean {
     return false;
   }
 
+  if (!isValidPeselDate(pesel)) {
+    return false;
+  }
+
   const digits = pesel.split("").map((digit) => parseInt(digit, 10));
   const checkDigit = digits[10];
   const sum = calculateChecksum(digits.slice(0, 10), WEIGHTS);
@@ -18,3 +22,37 @@ export function isValidPesel(pesel: string): boolean {
 
   return (modulo === 0 && checkDigit === 0) || 10 - modulo === checkDigit;
 }
+
+const MODULO_REMAINDER_TO_CENTURY = {
+  0: 1900,
+  20: 2000,
+  40: 2100,
+  60: 2200,
+  80: 1800,
+};
+
+function isValidPeselDate(pesel: string): boolean {
+  const yearShortly = Number(pesel.slice(0, 2));
+  const increasedMonth = Number(pesel.slice(2, 4));
+  const day = Number(pesel.slice(4, 6));
+
+  // calculate the century and sum up the actual year
+  const month = increasedMonth % 20;
+  const monthIndex = month - 1;
+  const century = MODULO_REMAINDER_TO_CENTURY[increasedMonth - month];
+  const year = century + yearShortly;
+
+  const date = new Date(year, monthIndex, day);
+
+  // if any parameter overflows the defined bounds,
+  // it "carries over", so the parsed date must be compared
+  return (
+    date.getDate() === day &&
+    date.getMonth() === monthIndex &&
+    date.getFullYear() === year
+  );
+}
+
+export const exportedForTesting = {
+  isValidPeselDate,
+};

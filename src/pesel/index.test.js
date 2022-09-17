@@ -1,4 +1,6 @@
-import { isValidPesel } from ".";
+import { isValidPesel, exportedForTesting } from ".";
+
+const { isValidPeselDate } = exportedForTesting;
 
 describe("isValidPesel", () => {
   const pesels = [
@@ -161,5 +163,31 @@ describe("isValidPesel", () => {
 
   test("invalid pesels", () => {
     expect(invalidPesels.every((pesel) => !isValidPesel(pesel))).toBe(true);
+  });
+});
+
+describe("isValidPeselDate", () => {
+  it("returns true for valid date", () => {
+    expect(isValidPeselDate("000101")).toBe(true);
+    expect(isValidPeselDate("001001")).toBe(true);
+  });
+
+  it("returns true for increased valid date", () => {
+    expect(isValidPeselDate("002101")).toBe(true);
+    expect(isValidPeselDate("003001")).toBe(true);
+  });
+
+  it("return false for invalid date - 2000-02-31", () => {
+    expect(isValidPeselDate("000231")).toBe(false);
+  });
+
+  it("returns false for invalid (increased) date", () => {
+    expect(isValidPeselDate("000000")).toBe(false);
+    expect(isValidPeselDate("000001")).toBe(false);
+    expect(isValidPeselDate("000141")).toBe(false);
+    expect(isValidPeselDate("001041")).toBe(false);
+    expect(isValidPeselDate("002041")).toBe(false);
+    expect(isValidPeselDate("003041")).toBe(false);
+    expect(isValidPeselDate("004001")).toBe(false);
   });
 });
