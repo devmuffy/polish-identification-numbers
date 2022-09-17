@@ -1,6 +1,6 @@
 import { calculateChecksum, NUMBERS_ONLY_REGEX } from "../utils";
 
-const weights = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
+const WEIGHTS = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
 
 export function isValidPesel(pesel: string): boolean {
   if (
@@ -13,7 +13,7 @@ export function isValidPesel(pesel: string): boolean {
 
   const digits = pesel.split("").map((digit) => parseInt(digit, 10));
   const checkDigit = digits[10];
-  const sum = calculateChecksum(digits.slice(0, 10), weights);
+  const sum = calculateChecksum(digits.slice(0, 10), WEIGHTS);
   const modulo = sum % 10;
 
   return (modulo === 0 && checkDigit === 0) || 10 - modulo === checkDigit;
