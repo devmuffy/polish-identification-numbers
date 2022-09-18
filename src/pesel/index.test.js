@@ -1,4 +1,4 @@
-import { isValidPesel, exportedForTesting } from ".";
+import { exportedForTesting, isValidPesel } from ".";
 
 const { isValidPeselDate } = exportedForTesting;
 
@@ -157,37 +157,32 @@ describe("isValidPesel", () => {
     "99041$@827235",
   ];
 
-  test("valid pesels", () => {
-    expect(pesels.every((pesel) => isValidPesel(pesel))).toBe(true);
-  });
+  test.each(pesels)("is %o valid PESEL", (pesel) =>
+    expect(isValidPesel(pesel)).toBe(true)
+  );
 
-  test("invalid pesels", () => {
-    expect(invalidPesels.every((pesel) => !isValidPesel(pesel))).toBe(true);
-  });
+  test.each(invalidPesels)("is %o invalid PESEL", (pesel) =>
+    expect(!isValidPesel(pesel)).toBe(true)
+  );
 });
 
 describe("isValidPeselDate", () => {
-  it("returns true for valid date", () => {
-    expect(isValidPeselDate("000101")).toBe(true);
-    expect(isValidPeselDate("001001")).toBe(true);
-  });
+  test.each(["000101", "001001"])("%o is a valid PESEL date", (pesel) =>
+    expect(isValidPeselDate(pesel)).toBe(true)
+  );
 
-  it("returns true for increased valid date", () => {
-    expect(isValidPeselDate("002101")).toBe(true);
-    expect(isValidPeselDate("003001")).toBe(true);
-  });
+  test.each(["002101", "004101", "006101", "008101"])(
+    "%o is a valid PESEL date - another century",
+    (pesel) => expect(isValidPeselDate(pesel)).toBe(true)
+  );
 
-  it("return false for invalid date - 2000-02-31", () => {
-    expect(isValidPeselDate("000231")).toBe(false);
-  });
+  test.each(["000000", "000001", "002001", "000140"])(
+    "%o is a invalid PESEL date",
+    (pesel) => expect(isValidPeselDate(pesel)).toBe(false)
+  );
 
-  it("returns false for invalid (increased) date", () => {
-    expect(isValidPeselDate("000000")).toBe(false);
-    expect(isValidPeselDate("000001")).toBe(false);
-    expect(isValidPeselDate("000141")).toBe(false);
-    expect(isValidPeselDate("001041")).toBe(false);
-    expect(isValidPeselDate("002041")).toBe(false);
-    expect(isValidPeselDate("003041")).toBe(false);
-    expect(isValidPeselDate("004001")).toBe(false);
-  });
+  test.each(["000231", "000431"])(
+    "%o is a invalid PESEL date - non-existent day",
+    (pesel) => expect(isValidPeselDate(pesel)).toBe(false)
+  );
 });
