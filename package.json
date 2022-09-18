@@ -15,7 +15,12 @@
   ],
   "homepage": "https://github.com/muffypl/polish-identification-numbers#readme",
   "source": "src/index.ts",
-  "main": "dist/index.js",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "default": "./dist/index.modern.js"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.module.js",
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && microbundle",
