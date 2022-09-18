@@ -3,4 +3,5 @@ src
 .editorconfig
 .gitignore
 .prettierignore
-babel.config.js
+babel.config.cjs
+tsconfig.json
