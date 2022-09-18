@@ -1,0 +1,6 @@
+node_modules
+src
+.editorconfig
+.gitignore
+.prettierignore
+babel.config.js
