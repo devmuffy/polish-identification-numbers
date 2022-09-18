@@ -23,7 +23,7 @@ export function isValidPesel(pesel: string): boolean {
   return (modulo === 0 && checkDigit === 0) || 10 - modulo === checkDigit;
 }
 
-const MODULO_REMAINDER_TO_CENTURY = {
+const MODULO_REMAINDER_TO_CENTURY: Record<number, number> = {
   0: 1900,
   20: 2000,
   40: 2100,
