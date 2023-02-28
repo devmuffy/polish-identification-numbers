@@ -31,7 +31,7 @@ const LETTER_TO_VALUE = new Map([
 ]);
 const WEIGHTS = [7, 3, 1, 9, 7, 3, 1, 7, 3];
 
-export const isValidIdentityCardNumber = (idNumber: string) => {
+export function isValidIdentityCardNumber(idNumber: string) {
   if (
     typeof idNumber !== "string" ||
     idNumber.length !== 9 ||
@@ -49,4 +49,4 @@ export const isValidIdentityCardNumber = (idNumber: string) => {
   const modulo = sum % 10;
 
   return modulo === 0;
-};
+}

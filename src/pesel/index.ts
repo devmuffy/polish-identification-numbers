@@ -9,7 +9,7 @@ const MODULO_REMAINDER_TO_CENTURY = new Map([
   [80, 1800],
 ]);
 
-const isValidPeselDate = (pesel: string): boolean => {
+function isValidPeselDate(pesel: string): boolean {
   const yearShortly = Number(pesel.slice(0, 2));
   const increasedMonth = Number(pesel.slice(2, 4));
   const day = Number(pesel.slice(4, 6));
@@ -29,7 +29,7 @@ const isValidPeselDate = (pesel: string): boolean => {
     date.getMonth() === monthIndex &&
     date.getFullYear() === year
   );
-};
+}
 
 export function isValidPesel(pesel: string): boolean {
   if (
