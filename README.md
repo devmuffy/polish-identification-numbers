@@ -1,8 +1,13 @@
 # 🇵🇱 Polish Identification Numbers
 
-A library for validating identity card, NIP, PESEL and REGON numbers. Simple and
-written in TypeScript. Bundled by
-[Microbundle](https://github.com/developit/microbundle).
+A library to validate identity card, NIP, PESEL and REGON numbers. Simple and
+written in TypeScript. Bundled with [Microbundle](https://github.com/developit/microbundle).
+
+## Motivation
+
+Inspired by [radarsu's](https://github.com/radarsu)
+[validate-polish](https://github.com/radarsu/validate-polish) library. I
+disliked the API, so I decided to rewrite the library from scratch.
 
 ## Installation
 
@@ -16,50 +21,45 @@ $ yarn add polish-identification-numbers
 
 ## API
 
-### `isValidIdentityCardNumber(string): boolean`
+### `isValidIdentityCardNumber`
 
-```js
+```ts
 import { isValidIdentityCardNumber } from "polish-identification-numbers";
 
-isValidIdentityCardNumber("AAA000000"); // => true
+isValidIdentityCardNumber("AAA000000");
 ```
 
-### `isValidNip(string): boolean`
+### `isValidNip`
 
-```js
+```ts
 import { isValidNip } from "polish-identification-numbers";
 
-isValidNip("9165459461"); // => true
+isValidNip("9165459461");
+isValidNip("123-456-32-18".replaceAll("-", ""));
 ```
 
-### `isValidPesel(string): boolean`
+### `isValidPesel`
 
-```js
+```ts
 import { isValidPesel } from "polish-identification-numbers";
 
-isValidPesel("02261773497"); // => true
+isValidPesel("02261773497");
 ```
 
-### `isValidRegon(string): boolean`
+### `isValidRegon`
 
 Works for both 9-digit and 14-digit numbers.
 
-```js
+```ts
 import { isValidRegon } from "polish-identification-numbers";
 
-isValidRegon("095895365"); // => true
-isValidRegon("09796377087762"); // => true
+isValidRegon("095895365");
+isValidRegon("09796377087762");
 ```
 
 ## Dependencies
 
 None.
-
-## Credits
-
-Inspired by [radarsu's](https://github.com/radarsu)
-[validate-polish](https://github.com/radarsu/validate-polish) library. I
-disliked the API, so I decided to implement the library from scratch.
 
 ## License
 
