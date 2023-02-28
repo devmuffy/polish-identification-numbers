@@ -31,6 +31,10 @@ const LETTER_TO_VALUE = new Map([
 ]);
 const WEIGHTS = [7, 3, 9, 1, 7, 3, 1, 7, 3];
 
+/**
+ * @example
+ * isValidPassportNumber("CC7999486")
+ */
 export function isValidPassportNumber(passportNumber: string) {
   if (
     typeof passportNumber !== "string" ||
