@@ -35,12 +35,9 @@ export function isValidPesel(pesel: string): boolean {
   if (
     typeof pesel !== "string" ||
     pesel.length !== 11 ||
-    !NUMBERS_ONLY_REGEX.test(pesel)
+    !NUMBERS_ONLY_REGEX.test(pesel) ||
+    !isValidPeselDate(pesel)
   ) {
-    return false;
-  }
-
-  if (!isValidPeselDate(pesel)) {
     return false;
   }
 
