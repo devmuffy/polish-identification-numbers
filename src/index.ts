@@ -1,4 +1,5 @@
-export { isValidIdentityCardNumber } from "./identityCardNumber";
-export { isValidNip } from "./nip";
-export { isValidPesel } from "./pesel";
-export { isValidRegon } from "./regon";
+export { isValidIdentityCardNumber } from "./identityCardNumber/index";
+export { isValidNip } from "./nip/index";
+export { isValidPassportNumber } from "./passportNumber/index";
+export { isValidPesel } from "./pesel/index";
+export { isValidRegon } from "./regon/index";
