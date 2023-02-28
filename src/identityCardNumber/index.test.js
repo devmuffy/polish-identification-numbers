@@ -1,3 +1,4 @@
+import { expect, test } from "vitest";
 import { isValidIdentityCardNumber } from ".";
 
 test.each([null, 0, {}, []])(

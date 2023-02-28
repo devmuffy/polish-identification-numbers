@@ -1,7 +1,7 @@
+coverage
 node_modules
 src
 .editorconfig
 .gitignore
 .prettierignore
-babel.config.cjs
 tsconfig.json

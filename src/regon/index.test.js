@@ -1,3 +1,4 @@
+import { expect, test } from "vitest";
 import { isValidRegon } from ".";
 
 const regon9 = [
