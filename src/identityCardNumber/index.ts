@@ -1,7 +1,7 @@
 import { calculateChecksum } from "../utils";
 
 const FORMAT_REGEX = /^[a-zA-Z]{3}\d{6}$/;
-const LETTER_TO_VALUE = {
+const LETTER_TO_VALUE: Record<string, number> = {
   A: 10,
   B: 11,
   C: 12,
@@ -35,7 +35,7 @@ const WEIGHTS = [7, 3, 1, 9, 7, 3, 1, 7, 3];
  * @example
  * isValidIdentityCardNumber("KKK111410")
  */
-export function isValidIdentityCardNumber(idNumber: string) {
+export function isValidIdentityCardNumber(idNumber: string): boolean {
   if (
     typeof idNumber !== "string" ||
     idNumber.length !== 9 ||
