@@ -47,7 +47,7 @@ export function isValidIdentityCardNumber(idNumber: string): boolean {
   const chars = idNumber.toUpperCase().split("");
   const digits = [
     ...chars.slice(0, 3).map((char) => LETTER_TO_VALUE[char]),
-    ...chars.slice(3, 9).map((char) => parseInt(char, 10)),
+    ...chars.slice(3, 9).map(Number),
   ];
   const sum = calculateChecksum(digits, WEIGHTS);
   const modulo = sum % 10;

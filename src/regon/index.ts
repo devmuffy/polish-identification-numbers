@@ -18,7 +18,7 @@ export function isValidRegon(regon: string): boolean {
     return false;
   }
 
-  const digits = regon.split("").map((char) => parseInt(char, 10));
+  const digits = regon.split("").map(Number);
   const sum9 = calculateChecksum(digits.slice(0, 8), WEIGHTS_REGON_9);
   const checkDigit9 = digits[8];
   const modulo9 = sum9 % 11;
