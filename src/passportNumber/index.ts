@@ -1,7 +1,7 @@
 import { calculateChecksum } from "../utils";
 
 const FORMAT_REGEX = /^[a-zA-Z]{2}\d{7}$/;
-const LETTER_TO_VALUE = {
+const LETTER_TO_VALUE: Record<string, number> = {
   A: 10,
   B: 11,
   C: 12,
@@ -35,7 +35,7 @@ const WEIGHTS = [7, 3, 9, 1, 7, 3, 1, 7, 3];
  * @example
  * isValidPassportNumber("CC7999486")
  */
-export function isValidPassportNumber(passportNumber: string) {
+export function isValidPassportNumber(passportNumber: string): boolean {
   if (
     typeof passportNumber !== "string" ||
     passportNumber.length !== 9 ||

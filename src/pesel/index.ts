@@ -1,12 +1,12 @@
 import { calculateChecksum, NUMBERS_ONLY_REGEX } from "../utils";
 
 const WEIGHTS = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
-const REMAINDER_OF_MODULO_TO_CENTURY = {
-  "0": 1900,
-  "20": 2000,
-  "40": 2100,
-  "60": 2200,
-  "80": 1800,
+const REMAINDER_OF_MODULO_TO_CENTURY: Record<number, number> = {
+  0: 1900,
+  20: 2000,
+  40: 2100,
+  60: 2200,
+  80: 1800,
 };
 
 function isValidPeselDate(pesel: string): boolean {
