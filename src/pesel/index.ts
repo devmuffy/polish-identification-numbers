@@ -31,6 +31,10 @@ function isValidPeselDate(pesel: string): boolean {
   );
 }
 
+/**
+ * @example
+ * isValidPesel("99041827235")
+ */
 export function isValidPesel(pesel: string): boolean {
   if (
     typeof pesel !== "string" ||

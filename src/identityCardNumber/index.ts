@@ -31,6 +31,10 @@ const LETTER_TO_VALUE = new Map([
 ]);
 const WEIGHTS = [7, 3, 1, 9, 7, 3, 1, 7, 3];
 
+/**
+ * @example
+ * isValidIdentityCardNumber("KKK111410")
+ */
 export function isValidIdentityCardNumber(idNumber: string) {
   if (
     typeof idNumber !== "string" ||

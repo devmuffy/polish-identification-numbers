@@ -3,6 +3,12 @@ import { calculateChecksum, NUMBERS_ONLY_REGEX } from "../utils";
 const WEIGHTS_REGON_9 = [8, 9, 2, 3, 4, 5, 6, 7];
 const WEIGHTS_REGON_14 = [2, 4, 8, 5, 0, 9, 7, 3, 6, 1, 2, 4, 8];
 
+/**
+ * @example
+ * isValidRegon("834898478")
+ * @example
+ * isValidRegon("09796377087762")
+ */
 export function isValidRegon(regon: string): boolean {
   if (
     typeof regon !== "string" ||
