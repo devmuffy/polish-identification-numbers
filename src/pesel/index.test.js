@@ -1,3 +1,4 @@
+import { describe, expect, test } from "vitest";
 import { exportedForTesting, isValidPesel } from ".";
 
 const { isValidPeselDate } = exportedForTesting;
