@@ -3,8 +3,9 @@
   "version": "2.0.2",
   "license": "MIT",
   "author": "Sebastian Fituch <sitemax@gmail.com>",
-  "description": "A library for validating NIP, PESEL and REGON numbers. Simple and written in TypeScript.",
+  "description": "A library for validating identity card, NIP, PESEL and REGON numbers. Simple and written in TypeScript.",
   "keywords": [
+    "identity-card-number",
     "nip",
     "pesel",
     "polish",
@@ -13,7 +14,7 @@
     "validation",
     "walidacja"
   ],
-  "homepage": "https://github.com/muffypl/polish-identification-numbers#readme",
+  "homepage": "https://github.com/devmuffy/polish-identification-numbers#readme",
   "type": "module",
   "source": "src/index.ts",
   "exports": {
