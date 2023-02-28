@@ -1,7 +1,14 @@
 # 🇵🇱 Polish Identification Numbers
 
-A library to validate identity card, NIP, PESEL and REGON numbers. Simple and
-written in TypeScript. Bundled with [Microbundle](https://github.com/developit/microbundle).
+A library for validating numbers of:
+
+- identity card (Polish: _dowód osobisty_),
+- NIP,
+- passport (Polish: _paszport_),
+- PESEL,
+- REGON.
+
+Simple and written in TypeScript. Bundled with [Microbundle](https://github.com/developit/microbundle).
 
 ## Motivation
 
@@ -36,6 +43,14 @@ import { isValidNip } from "polish-identification-numbers";
 
 isValidNip("9165459461");
 isValidNip("123-456-32-18".replaceAll("-", ""));
+```
+
+### `isValidPassportNumber`
+
+```ts
+import { isValidPassportNumber } from "polish-identification-numbers";
+
+isValidPassportNumber("CC7999486");
 ```
 
 ### `isValidPesel`
