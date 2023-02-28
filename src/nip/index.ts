@@ -11,7 +11,7 @@ export const isValidNip = (nip: string): boolean => {
     return false;
   }
 
-  const digits = nip.split("").map((digit) => parseInt(digit, 10));
+  const digits = nip.split("").map((char) => parseInt(char, 10));
   const checkDigit = digits[9];
   const sum = calculateChecksum(digits.slice(0, 9), WEIGHTS);
   const modulo = sum % 11;
