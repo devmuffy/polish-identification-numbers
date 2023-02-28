@@ -44,7 +44,7 @@ export function isValidPesel(pesel: string): boolean {
     return false;
   }
 
-  const digits = pesel.split("").map((digit) => parseInt(digit, 10));
+  const digits = pesel.split("").map((char) => parseInt(char, 10));
   const checkDigit = digits[10];
   const sum = calculateChecksum(digits.slice(0, 10), WEIGHTS);
   const modulo = sum % 10;

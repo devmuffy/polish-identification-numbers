@@ -31,16 +31,16 @@ const LETTER_TO_VALUE = new Map([
 ]);
 const WEIGHTS = [7, 3, 1, 9, 7, 3, 1, 7, 3];
 
-export const isValidIdentityCardNumber = (identityCard: string) => {
+export const isValidIdentityCardNumber = (idNumber: string) => {
   if (
-    typeof identityCard !== "string" ||
-    identityCard.length !== 9 ||
-    !FORMAT_REGEX.test(identityCard)
+    typeof idNumber !== "string" ||
+    idNumber.length !== 9 ||
+    !FORMAT_REGEX.test(idNumber)
   ) {
     return false;
   }
 
-  const chars = identityCard.toUpperCase().split("");
+  const chars = idNumber.toUpperCase().split("");
   const digits = [
     ...chars.slice(0, 3).map((char) => LETTER_TO_VALUE.get(char)!),
     ...chars.slice(3, 9).map((char) => parseInt(char, 10)),
