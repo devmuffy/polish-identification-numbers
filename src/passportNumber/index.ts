@@ -47,7 +47,7 @@ export function isValidPassportNumber(passportNumber: string): boolean {
   const chars = passportNumber.toUpperCase().split("");
   const digits = [
     ...chars.slice(0, 2).map((char) => LETTER_TO_VALUE[char]),
-    ...chars.slice(2, 9).map((char) => parseInt(char, 10)),
+    ...chars.slice(2, 9).map(Number),
   ];
   const sum = calculateChecksum(digits, WEIGHTS);
   const modulo = sum % 10;
