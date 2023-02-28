@@ -1,13 +1,13 @@
 import { calculateChecksum, NUMBERS_ONLY_REGEX } from "../utils";
 
 const WEIGHTS = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
-const MODULO_REMAINDER_TO_CENTURY = new Map([
-  [0, 1900],
-  [20, 2000],
-  [40, 2100],
-  [60, 2200],
-  [80, 1800],
-]);
+const REMAINDER_OF_MODULO_TO_CENTURY = {
+  "0": 1900,
+  "20": 2000,
+  "40": 2100,
+  "60": 2200,
+  "80": 1800,
+};
 
 function isValidPeselDate(pesel: string): boolean {
   const yearShortly = Number(pesel.slice(0, 2));
@@ -17,7 +17,7 @@ function isValidPeselDate(pesel: string): boolean {
   // calculate the century and sum up the actual year
   const month = increasedMonth % 20;
   const monthIndex = month - 1;
-  const century = MODULO_REMAINDER_TO_CENTURY.get(increasedMonth - month)!;
+  const century = REMAINDER_OF_MODULO_TO_CENTURY[increasedMonth - month];
   const year = century + yearShortly;
 
   const date = new Date(year, monthIndex, day);
