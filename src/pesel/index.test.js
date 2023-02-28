@@ -1,7 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { exportedForTesting, isValidPesel } from ".";
-
-const { isValidPeselDate } = exportedForTesting;
+import { isValidDate, isValidPesel } from ".";
 
 describe("isValidPesel", () => {
   const pesels = [
@@ -167,23 +165,23 @@ describe("isValidPesel", () => {
   );
 });
 
-describe("isValidPeselDate", () => {
+describe("isValidDate", () => {
   test.each(["000101", "001001"])("%o is a valid PESEL date", (pesel) =>
-    expect(isValidPeselDate(pesel)).toBe(true)
+    expect(isValidDate(pesel)).toBe(true)
   );
 
   test.each(["002101", "004101", "006101", "008101"])(
     "%o is a valid PESEL date - another century",
-    (pesel) => expect(isValidPeselDate(pesel)).toBe(true)
+    (pesel) => expect(isValidDate(pesel)).toBe(true)
   );
 
   test.each(["000000", "000001", "002001", "000140"])(
     "%o is a invalid PESEL date",
-    (pesel) => expect(isValidPeselDate(pesel)).toBe(false)
+    (pesel) => expect(isValidDate(pesel)).toBe(false)
   );
 
   test.each(["000231", "000431"])(
     "%o is a invalid PESEL date - non-existent day",
-    (pesel) => expect(isValidPeselDate(pesel)).toBe(false)
+    (pesel) => expect(isValidDate(pesel)).toBe(false)
   );
 });
