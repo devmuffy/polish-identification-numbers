@@ -8,7 +8,7 @@ A library for validating numbers of:
 - PESEL,
 - REGON.
 
-Simple and written in TypeScript. Bundled with [Microbundle](https://github.com/developit/microbundle).
+Simple and written in TypeScript. Bundled with [tsup](https://github.com/egoist/tsup).
 
 ## Motivation
 
