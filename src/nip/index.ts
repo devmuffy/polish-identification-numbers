@@ -2,7 +2,7 @@ import { calculateChecksum, NUMBERS_ONLY_REGEX } from "../utils";
 
 const WEIGHTS = [6, 5, 7, 2, 3, 4, 5, 6, 7];
 
-export const isValidNip = (nip: string): boolean => {
+export function isValidNip(nip: string): boolean {
   if (
     typeof nip !== "string" ||
     nip.length !== 10 ||
@@ -17,4 +17,4 @@ export const isValidNip = (nip: string): boolean => {
   const modulo = sum % 11;
 
   return modulo === checkDigit;
-};
+}
