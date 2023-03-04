@@ -60,18 +60,18 @@ const invalidRegon14 = [
   "93671439678400",
 ];
 
-test("valid regon9", () => {
-  expect(regon9.every((regon) => isValidRegon(regon))).toBe(true);
-});
+test.each(regon9)("%o is valid 9-digit regon", (regon) =>
+  expect(isValidRegon(regon)).toBe(true)
+);
 
-test("invalid regon9", () => {
-  expect(invalidRegon9.every((regon) => !isValidRegon(regon))).toBe(true);
-});
+test.each(invalidRegon9)("%o is invalid 9-digit regon", (regon) =>
+  expect(isValidRegon(regon)).toBe(false)
+);
 
-test("valid regon14", () => {
-  expect(regon14.every((regon) => isValidRegon(regon))).toBe(true);
-});
+test.each(regon14)("%o is valid 14-digit regon", (regon) =>
+  expect(isValidRegon(regon)).toBe(true)
+);
 
-test("invalid regon14", () => {
-  expect(invalidRegon14.every((regon) => !isValidRegon(regon))).toBe(true);
-});
+test.each(invalidRegon14)("%o is invalid 14-digit regon", (regon) =>
+  expect(isValidRegon(regon)).toBe(false)
+);

@@ -156,12 +156,12 @@ describe("isValidPesel", () => {
     "99041$@827235",
   ];
 
-  test.each(pesels)("is %o valid PESEL", (pesel) =>
+  test.each(pesels)("%o is valid PESEL", (pesel) =>
     expect(isValidPesel(pesel)).toBe(true)
   );
 
-  test.each(invalidPesels)("is %o invalid PESEL", (pesel) =>
-    expect(!isValidPesel(pesel)).toBe(true)
+  test.each(invalidPesels)("%o is invalid PESEL", (pesel) =>
+    expect(isValidPesel(pesel)).toBe(false)
   );
 });
 

@@ -111,10 +111,10 @@ export const invalidNips = [
   "9852651274",
 ];
 
-test("valid nips", () => {
-  expect(nips.every((nip) => isValidNip(nip))).toBe(true);
+test.each(nips)("%o is valid NIP", (nip) => {
+  expect(isValidNip(nip)).toBe(true);
 });
 
-test("invalid nips", () => {
-  expect(invalidNips.every((nip) => !isValidNip(nip))).toBe(true);
+test.each(invalidNips)("%o is invalid NIP", (nip) => {
+  expect(isValidNip(nip)).toBe(false);
 });
