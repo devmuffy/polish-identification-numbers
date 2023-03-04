@@ -13,8 +13,7 @@ Simple and written in TypeScript. Bundled with [tsup](https://github.com/egoist/
 ## Motivation
 
 Inspired by [radarsu's](https://github.com/radarsu)
-[validate-polish](https://github.com/radarsu/validate-polish) library. I
-disliked the API, so I decided to rewrite the library from scratch.
+[validate-polish](https://github.com/radarsu/validate-polish) library. I didn't like the API, so I decided to create one from scratch.
 
 ## Installation
 
@@ -72,9 +71,11 @@ isValidRegon("095895365");
 isValidRegon("09796377087762");
 ```
 
-## Dependencies
+## Features
 
-None.
+- no dependencies
+- small size
+- tree-shakeable
 
 ## License
 
