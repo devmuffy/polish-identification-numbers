@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { calculateChecksum } from "./utils";
+import { calculateChecksum, splitAt, splitEvery, take } from "./utils";
 
 describe("calculateChecksum", () => {
   test.each([
@@ -17,3 +17,71 @@ describe("calculateChecksum", () => {
   });
 });
 
+describe("splitAt", () => {
+  // prettier-ignore
+  test.each([
+    [
+      0,
+      [1, 2, 3, 4],
+      [[], [1, 2, 3, 4]]
+    ],
+    [
+      1,
+      [1, 2, 3, 4],
+      [[1], [2, 3, 4]]
+    ],
+    [
+      2,
+      [1, 2, 3, 4],
+      [[1, 2], [3, 4]]
+    ],
+    [
+      5,
+      [1, 2, 3, 4],
+      [[1, 2, 3, 4], []]
+    ],
+    [
+      3,
+      "foobar",
+      ["foo", "bar"]
+    ]
+  ])("splitAt(%i, %o) -> %o", (size, arrayOrString, expected) => {
+    expect(splitAt(size, arrayOrString)).toStrictEqual(expected);
+  });
+});
+
+describe("splitEvery", () => {
+  // prettier-ignore
+  test.each([
+    [
+      2,
+      [1, 1, 2, 2, 3, 3],
+      [[1, 1], [2, 2], [3, 3]],
+    ],
+    [
+      2,
+      "112233",
+      ["11", "22", "33"]
+    ],
+  ])("splitEvery(%i, %o) -> %o", (size, arrayOrString, expected) => {
+    expect(splitEvery(size, arrayOrString)).toStrictEqual(expected);
+  });
+});
+
+describe("take", () => {
+  // prettier-ignore
+  test.each([
+    [
+      2,
+      [1, 2, 3, 4],
+      [1, 2]
+    ],
+    [
+      3,
+      "1234",
+      "123"
+    ],
+  ])("take(%i, %o) -> %o", (size, arrayOrString, expected) => {
+    expect(take(size, arrayOrString)).toStrictEqual(expected);
+  });
+});

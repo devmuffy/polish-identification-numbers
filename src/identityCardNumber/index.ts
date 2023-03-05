@@ -1,7 +1,7 @@
-import { calculateChecksum } from "../utils";
+import { calculateChecksum, splitAt } from "../utils";
 
 const FORMAT_REGEX = /^[a-zA-Z]{3}\d{6}$/;
-const LETTER_TO_VALUE: Record<string, number> = {
+const LETTER_TO_NUMBER: Record<string, number> = {
   A: 10,
   B: 11,
   C: 12,
@@ -45,11 +45,12 @@ export function isValidIdentityCardNumber(idNumber: string): boolean {
   }
 
   const chars = idNumber.toUpperCase().split("");
-  const digits = [
-    ...chars.slice(0, 3).map((char) => LETTER_TO_VALUE[char]),
-    ...chars.slice(3, 9).map(Number),
+  const [letters, digits] = splitAt(3, chars);
+  const numberAndDigits = [
+    ...letters.map((letter) => LETTER_TO_NUMBER[letter]),
+    ...digits.map(Number),
   ];
-  const sum = calculateChecksum(digits, WEIGHTS);
+  const sum = calculateChecksum(numberAndDigits, WEIGHTS);
   const modulo = sum % 10;
 
   return modulo === 0;

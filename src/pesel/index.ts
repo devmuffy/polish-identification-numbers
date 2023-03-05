@@ -1,4 +1,9 @@
-import { calculateChecksum, NUMBERS_ONLY_REGEX } from "../utils";
+import {
+  calculateChecksum,
+  splitEvery,
+  NUMBERS_ONLY_REGEX,
+  take,
+} from "../utils";
 
 const WEIGHTS = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
 const REMAINDER_OF_MODULO_TO_CENTURY: Record<number, number> = {
@@ -10,11 +15,8 @@ const REMAINDER_OF_MODULO_TO_CENTURY: Record<number, number> = {
 };
 
 export function isValidDate(pesel: string): boolean {
-  const decade = Number(pesel.slice(0, 2));
-  const encodedMonth = Number(pesel.slice(2, 4));
-  const day = Number(pesel.slice(4, 6));
+  const [decade, encodedMonth, day] = splitEvery(2, pesel).map(Number);
 
-  // calculate the century and sum up the actual year
   const month = encodedMonth % 20;
   const century = REMAINDER_OF_MODULO_TO_CENTURY[encodedMonth - month];
   const year = century + decade;
@@ -40,14 +42,14 @@ export function isValidPesel(pesel: string): boolean {
     typeof pesel !== "string" ||
     pesel.length !== 11 ||
     !NUMBERS_ONLY_REGEX.test(pesel) ||
-    !isValidDate(pesel)
+    !isValidDate(take(6, pesel))
   ) {
     return false;
   }
 
   const digits = pesel.split("").map(Number);
   const checkDigit = digits[10];
-  const sum = calculateChecksum(digits.slice(0, 10), WEIGHTS);
+  const sum = calculateChecksum(take(10, digits), WEIGHTS);
   const modulo = sum % 10;
 
   return (modulo === 0 && checkDigit === 0) || 10 - modulo === checkDigit;
