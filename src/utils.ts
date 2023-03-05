@@ -7,7 +7,9 @@ export function calculateChecksum(digits: number[], weights: number[]): number {
     );
   }
 
-  return digits
-    .map((digit, index) => digit * weights[index])
-    .reduce((sum, number) => sum + number, 0);
+  let sum = 0;
+  for (const i in digits) {
+    sum += digits[i] * weights[i];
+  }
+  return sum;
 }
