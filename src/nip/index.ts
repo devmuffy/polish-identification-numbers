@@ -1,4 +1,4 @@
-import { calculateChecksum, NUMBERS_ONLY_REGEX, take } from "../utils";
+import { calculateChecksum, NUMBERS_ONLY_REGEX, splitAt } from "../utils";
 
 const WEIGHTS = [6, 5, 7, 2, 3, 4, 5, 6, 7];
 
@@ -17,9 +17,8 @@ export function isValidNip(nip: string): boolean {
     return false;
   }
 
-  const digits = nip.split("").map(Number);
-  const checkDigit = digits[9];
-  const sum = calculateChecksum(take(9, digits), WEIGHTS);
+  const [digits, [checkDigit]] = splitAt(9, nip.split("").map(Number));
+  const sum = calculateChecksum(digits, WEIGHTS);
   const modulo = sum % 11;
 
   return modulo === checkDigit;

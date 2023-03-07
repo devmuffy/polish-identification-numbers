@@ -1,7 +1,8 @@
 import {
   calculateChecksum,
-  splitEvery,
   NUMBERS_ONLY_REGEX,
+  splitAt,
+  splitEvery,
   take,
 } from "../utils";
 
@@ -47,10 +48,8 @@ export function isValidPesel(pesel: string): boolean {
     return false;
   }
 
-  const digits = pesel.split("").map(Number);
-  const checkDigit = digits[10];
-  const sum = calculateChecksum(take(10, digits), WEIGHTS);
-  const modulo = sum % 10;
+  const [digits, [checkDigit]] = splitAt(10, pesel.split("").map(Number));
+  const modulo = calculateChecksum(digits, WEIGHTS) % 10;
 
   return (modulo === 0 && checkDigit === 0) || 10 - modulo === checkDigit;
 }
