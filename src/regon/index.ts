@@ -1,4 +1,4 @@
-import { calculateChecksum, NUMBERS_ONLY_REGEX, take } from "../utils";
+import { calculateChecksum, NUMBERS_ONLY_REGEX, splitAt } from "../utils";
 
 const WEIGHTS_REGON_9 = [8, 9, 2, 3, 4, 5, 6, 7];
 const WEIGHTS_REGON_14 = [2, 4, 8, 5, 0, 9, 7, 3, 6, 1, 2, 4, 8];
@@ -19,9 +19,8 @@ export function isValidRegon(regon: string): boolean {
   }
 
   const digits = regon.split("").map(Number);
-  const sum9 = calculateChecksum(take(8, digits), WEIGHTS_REGON_9);
-  const checkDigit9 = digits[8];
-  const modulo9 = sum9 % 11;
+  const [digits9, [checkDigit9]] = splitAt(8, digits);
+  const modulo9 = calculateChecksum(digits9, WEIGHTS_REGON_9) % 11;
   const isValid9 =
     (modulo9 === 10 && checkDigit9 === 0) || modulo9 === checkDigit9;
 
@@ -29,9 +28,8 @@ export function isValidRegon(regon: string): boolean {
     return isValid9;
   }
 
-  const sum14 = calculateChecksum(take(13, digits), WEIGHTS_REGON_14);
-  const checkDigit14 = digits[13];
-  const modulo14 = sum14 % 11;
+  const [digits14, [checkDigit14]] = splitAt(13, digits);
+  const modulo14 = calculateChecksum(digits14, WEIGHTS_REGON_14) % 11;
 
   return (
     isValid9 &&
