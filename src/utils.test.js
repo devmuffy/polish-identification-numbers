@@ -1,5 +1,11 @@
 import { describe, expect, test } from "vitest";
-import { calculateChecksum, splitAt, splitEvery, take } from "./utils";
+import {
+  calculateChecksum,
+  isNumeric,
+  splitAt,
+  splitEvery,
+  take,
+} from "./utils";
 
 describe("calculateChecksum", () => {
   test.each([
@@ -14,6 +20,23 @@ describe("calculateChecksum", () => {
     const digits = [1, 2, 3];
     const weights = [1, 2];
     expect(() => calculateChecksum(digits, weights)).toThrow();
+  });
+});
+
+describe("isNumeric", () => {
+  test.each([
+    ["123", true],
+    ["0", true],
+    [123, true],
+    ["abc", false],
+    ["-456", false],
+    ["1.23", false],
+    ["", false],
+    [-123, false],
+    [null, false],
+    [undefined, false],
+  ])("isNumeric(%s) -> %s", (input, expected) => {
+    expect(isNumeric(input)).toBe(expected);
   });
 });
 
