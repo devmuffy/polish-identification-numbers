@@ -1,6 +1,6 @@
 import {
   calculateChecksum,
-  NUMBERS_ONLY_REGEX,
+  isNumeric,
   splitAt,
   splitEvery,
   take,
@@ -42,7 +42,7 @@ export function isValidPesel(pesel: string): boolean {
   if (
     typeof pesel !== "string" ||
     pesel.length !== 11 ||
-    !NUMBERS_ONLY_REGEX.test(pesel) ||
+    !isNumeric(pesel) ||
     !isValidDate(take(6, pesel))
   ) {
     return false;

@@ -1,5 +1,3 @@
-export const NUMBERS_ONLY_REGEX = /^\d+$/;
-
 export function calculateChecksum(digits: number[], weights: number[]): number {
   if (digits.length !== weights.length) {
     throw new Error(
@@ -12,6 +10,10 @@ export function calculateChecksum(digits: number[], weights: number[]): number {
     sum += digits[i] * weights[i];
   }
   return sum;
+}
+
+export function isNumeric(input: string): boolean {
+  return /^\d+$/.test(input);
 }
 
 export function splitAt(index: number, input: string): [string, string];

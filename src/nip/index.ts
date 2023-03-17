@@ -1,4 +1,4 @@
-import { calculateChecksum, NUMBERS_ONLY_REGEX, splitAt } from "../utils";
+import { calculateChecksum, isNumeric, splitAt } from "../utils";
 
 const WEIGHTS = [6, 5, 7, 2, 3, 4, 5, 6, 7];
 
@@ -9,11 +9,7 @@ const WEIGHTS = [6, 5, 7, 2, 3, 4, 5, 6, 7];
  * isValidNip("123-456-32-18".replaceAll("-", ""));
  */
 export function isValidNip(nip: string): boolean {
-  if (
-    typeof nip !== "string" ||
-    nip.length !== 10 ||
-    !NUMBERS_ONLY_REGEX.test(nip)
-  ) {
+  if (typeof nip !== "string" || nip.length !== 10 || !isNumeric(nip)) {
     return false;
   }
 
