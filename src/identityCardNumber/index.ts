@@ -1,54 +1,33 @@
-import { calculateChecksum, splitAt } from "../utils";
+import { LETTER_VALUES } from "../const";
+import { isUpperCaseCharacter } from "../guards";
+import { calculateChecksum, isNumeric, splitAt } from "../utils";
 
-const FORMAT_REGEX = /^[a-zA-Z]{3}\d{6}$/;
-const LETTER_TO_NUMBER: Record<string, number> = {
-  A: 10,
-  B: 11,
-  C: 12,
-  D: 13,
-  E: 14,
-  F: 15,
-  G: 16,
-  H: 17,
-  I: 18,
-  J: 19,
-  K: 20,
-  L: 21,
-  M: 22,
-  N: 23,
-  O: 24,
-  P: 25,
-  Q: 26,
-  R: 27,
-  S: 28,
-  T: 29,
-  U: 30,
-  V: 31,
-  W: 32,
-  X: 33,
-  Y: 34,
-  Z: 35,
-};
 const WEIGHTS = [7, 3, 1, 9, 7, 3, 1, 7, 3];
 
 /**
  * @example
  * isValidIdentityCardNumber("KKK111410")
+ * @example
+ * isValidIdentityCardNumber("KKK 111410".replaceAll(" ", ""))
  */
 export function isValidIdentityCardNumber(idNumber: string): boolean {
+  if (typeof idNumber !== "string" || idNumber.length !== 9) {
+    return false;
+  }
+
+  const [letters, numerals] = splitAt(3, idNumber.split(""));
+  const upperCaseLetters = letters.map((letter) => letter.toUpperCase());
+
   if (
-    typeof idNumber !== "string" ||
-    idNumber.length !== 9 ||
-    !FORMAT_REGEX.test(idNumber)
+    !upperCaseLetters.every(isUpperCaseCharacter) ||
+    !numerals.every(isNumeric)
   ) {
     return false;
   }
 
-  const chars = idNumber.toUpperCase().split("");
-  const [letters, digits] = splitAt(3, chars);
   const numberAndDigits = [
-    ...letters.map((letter) => LETTER_TO_NUMBER[letter]),
-    ...digits.map(Number),
+    ...upperCaseLetters.map((letter) => LETTER_VALUES[letter]),
+    ...numerals.map(Number),
   ];
   const sum = calculateChecksum(numberAndDigits, WEIGHTS);
   const modulo = sum % 10;
