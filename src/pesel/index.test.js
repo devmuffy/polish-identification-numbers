@@ -1,5 +1,10 @@
 import { describe, expect, test } from "vitest";
-import { isValidDate, isValidPesel } from ".";
+import {
+  getDateOfBirthFromPesel,
+  getGenderFromPesel,
+  isValidPesel,
+  parseDate,
+} from ".";
 
 describe("isValidPesel", () => {
   const pesels = [
@@ -165,23 +170,51 @@ describe("isValidPesel", () => {
   );
 });
 
-describe("isValidDate", () => {
-  test.each(["000101", "001001"])("%o is a valid PESEL date", (pesel) =>
-    expect(isValidDate(pesel)).toBe(true)
+describe("getDateOfBirthFromPesel", () => {
+  test.each([
+    ["01234567890", null],
+    ["91042336426", new Date(1991, 3, 23)],
+    ["02261773497", new Date(2002, 5, 17)],
+    ["04320189337", new Date(2004, 11, 1)],
+  ])("getDateOfBirthFromPesel(%s) -> %s", (pesel, expected) =>
+    expect(getDateOfBirthFromPesel(pesel)).toStrictEqual(expected)
+  );
+});
+
+describe("getGenderFromPesel", () => {
+  test.each([
+    ["02321144427", "female"],
+    ["04320189337", "male"],
+    ["21322998732", null],
+  ])("getGenderFromPesel(%s) -> %s", (pesel, expectedGender) => {
+    expect(getGenderFromPesel(pesel)).toEqual(expectedGender);
+  });
+});
+
+describe("parseDate", () => {
+  test.each([
+    ["000101", new Date(1900, 0, 1)],
+    ["001001", new Date(1900, 9, 1)],
+  ])("%o is a valid PESEL date", (pesel, expected) =>
+    expect(parseDate(pesel)).toStrictEqual(expected)
   );
 
-  test.each(["002101", "004101", "006101", "008101"])(
-    "%o is a valid PESEL date - another century",
-    (pesel) => expect(isValidDate(pesel)).toBe(true)
+  test.each([
+    ["002101", new Date(2000, 0, 1)],
+    ["004101", new Date(2100, 0, 1)],
+    ["006101", new Date(2200, 0, 1)],
+    ["008101", new Date(1800, 0, 1)],
+  ])("%o is a valid PESEL date - another century", (pesel, expected) =>
+    expect(parseDate(pesel)).toStrictEqual(expected)
   );
 
   test.each(["000000", "000001", "002001", "000140"])(
     "%o is a invalid PESEL date",
-    (pesel) => expect(isValidDate(pesel)).toBe(false)
+    (pesel) => expect(parseDate(pesel)).toBeNull()
   );
 
   test.each(["000231", "000431"])(
     "%o is a invalid PESEL date - non-existent day",
-    (pesel) => expect(isValidDate(pesel)).toBe(false)
+    (pesel) => expect(parseDate(pesel)).toBeNull()
   );
 });
