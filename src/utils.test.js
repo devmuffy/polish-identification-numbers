@@ -16,7 +16,7 @@ describe("calculateChecksum", () => {
     expect(calculateChecksum(digits, weights)).toBe(expected);
   });
 
-  test("throw if lengths do not match", () => {
+  test("should throw an error when called with arrays of different lengths", () => {
     const digits = [1, 2, 3];
     const weights = [1, 2];
     expect(() => calculateChecksum(digits, weights)).toThrow();
