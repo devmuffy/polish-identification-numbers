@@ -1,7 +1,7 @@
 export function calculateChecksum(digits: number[], weights: number[]): number {
   if (digits.length !== weights.length) {
     throw new Error(
-      "The length of the weights is not equal to the length of the digits."
+      "Invalid input: the weights array must have the same length as the digits array."
     );
   }
 
