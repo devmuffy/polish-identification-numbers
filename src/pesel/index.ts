@@ -15,23 +15,30 @@ const REMAINDER_OF_MODULO_TO_CENTURY: Record<number, number> = {
   80: 1800,
 };
 
-export function isValidDate(pesel: string): boolean {
-  const [decade, encodedMonth, day] = splitEvery(2, pesel).map(Number);
+/**
+ * @example
+ * getDateOfBirthFromPesel("99041827235")
+ */
+export function getDateOfBirthFromPesel(pesel: string): Date | null {
+  if (!isValidPesel(pesel)) {
+    return null;
+  }
 
-  const month = encodedMonth % 20;
-  const century = REMAINDER_OF_MODULO_TO_CENTURY[encodedMonth - month];
-  const year = century + decade;
+  return parseDate(pesel);
+}
 
-  const monthIndex = month - 1;
-  const date = new Date(year, monthIndex, day);
+export type Gender = "female" | "male" | null;
 
-  // if any parameter overflows the defined bounds,
-  // it "carries over", so the parsed date must be compared
-  return (
-    date.getDate() === day &&
-    date.getMonth() === monthIndex &&
-    date.getFullYear() === year
-  );
+/**
+ * @example
+ * getGenderFromPesel("99041827235")
+ */
+export function getGenderFromPesel(pesel: string): Gender {
+  if (!isValidPesel(pesel)) {
+    return null;
+  }
+
+  return Number(pesel.charAt(9)) % 2 === 0 ? "female" : "male";
 }
 
 /**
@@ -43,7 +50,7 @@ export function isValidPesel(pesel: string): boolean {
     typeof pesel !== "string" ||
     pesel.length !== 11 ||
     !isNumeric(pesel) ||
-    !isValidDate(take(6, pesel))
+    parseDate(take(6, pesel)) === null
   ) {
     return false;
   }
@@ -52,4 +59,23 @@ export function isValidPesel(pesel: string): boolean {
   const modulo = calculateChecksum(digits, WEIGHTS) % 10;
 
   return (modulo === 0 && checkDigit === 0) || 10 - modulo === checkDigit;
+}
+
+export function parseDate(pesel: string): Date | null {
+  const [year, encodedMonth, day] = splitEvery(2, pesel).map(Number);
+
+  const month = encodedMonth % 20;
+  const century = REMAINDER_OF_MODULO_TO_CENTURY[encodedMonth - month];
+  const fullYear = century + year;
+
+  const monthIndex = month - 1;
+  const date = new Date(fullYear, monthIndex, day);
+
+  // if any parameter overflows the defined bounds,
+  // it "carries over", so the parsed date must be compared
+  return date.getDate() === day &&
+    date.getMonth() === monthIndex &&
+    date.getFullYear() === fullYear
+    ? date
+    : null;
 }
