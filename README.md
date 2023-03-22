@@ -52,6 +52,27 @@ import { isValidPassportNumber } from "polish-identification-numbers";
 isValidPassportNumber("CC7999486");
 ```
 
+### `getDateOfBirthFromPesel`
+
+Returns `Date` object.
+
+```ts
+import { getDateOfBirthFromPesel } from "polish-identification-numbers";
+
+getDateOfBirthFromPesel("91042336426"); // new Date(1991, 3, 23)
+```
+
+### `getGenderFromPesel`
+
+Returns `"female"`, `"male"` or `null`.
+
+```ts
+import { getGenderFromPesel } from "polish-identification-numbers";
+
+getDateOfBirthFromPesel("02321144427"); // "female"
+```
+
+
 ### `isValidPesel`
 
 ```ts
