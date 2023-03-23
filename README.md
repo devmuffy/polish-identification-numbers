@@ -72,7 +72,6 @@ import { getGenderFromPesel } from "polish-identification-numbers";
 getDateOfBirthFromPesel("02321144427"); // "female"
 ```
 
-
 ### `isValidPesel`
 
 ```ts
