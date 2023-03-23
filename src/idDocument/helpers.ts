@@ -54,8 +54,7 @@ export function isValidIdDocument(
     ...upperCaseLetters.map((letter) => LETTER_VALUES[letter]),
     ...numerals.map(Number),
   ];
-  const sum = calculateChecksum(numbersAndDigits, weights);
-  const modulo = sum % 10;
+  const modulo = calculateChecksum(numbersAndDigits, weights) % 10;
 
   return modulo === 0;
 }

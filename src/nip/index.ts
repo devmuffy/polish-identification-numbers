@@ -14,8 +14,7 @@ export function isValidNip(nip: string): boolean {
   }
 
   const [digits, [checkDigit]] = splitAt(9, nip.split("").map(Number));
-  const sum = calculateChecksum(digits, WEIGHTS);
-  const modulo = sum % 11;
+  const modulo = calculateChecksum(digits, WEIGHTS) % 11;
 
   return modulo === checkDigit;
 }
