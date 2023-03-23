@@ -1,4 +1,4 @@
-import { isUpperCaseCharacter, UpperCaseCharacter } from "../guards";
+import { isUpperCaseCharacter, UpperCaseCharacter } from "./guards";
 import { calculateChecksum, isNumeric, splitAt } from "../utils";
 
 const LETTER_VALUES: Record<UpperCaseCharacter, number> = {
