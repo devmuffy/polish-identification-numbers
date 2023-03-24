@@ -29,6 +29,8 @@ $ yarn add polish-identification-numbers
 
 ### `isValidIdentityCardNumber`
 
+Returns `boolean`.
+
 ```ts
 import { isValidIdentityCardNumber } from "polish-identification-numbers";
 
@@ -36,6 +38,8 @@ isValidIdentityCardNumber("AAA000000");
 ```
 
 ### `isValidNip`
+
+Returns `boolean`.
 
 ```ts
 import { isValidNip } from "polish-identification-numbers";
@@ -46,6 +50,8 @@ isValidNip("123-456-32-18".replaceAll("-", ""));
 
 ### `isValidPassportNumber`
 
+Returns `boolean`.
+
 ```ts
 import { isValidPassportNumber } from "polish-identification-numbers";
 
@@ -54,25 +60,27 @@ isValidPassportNumber("CC7999486");
 
 ### `getDateOfBirthFromPesel`
 
-Returns `Date` object.
+Returns `Date` object or `null` if PESEL is invalid.
 
 ```ts
 import { getDateOfBirthFromPesel } from "polish-identification-numbers";
 
-getDateOfBirthFromPesel("91042336426"); // new Date(1991, 3, 23)
+getDateOfBirthFromPesel("91042336426"); // -> new Date(1991, 3, 23)
 ```
 
 ### `getGenderFromPesel`
 
-Returns `"female"`, `"male"` or `null`.
+Returns `Gender` type (`"female"`, `"male"` or `null` if PESEL is invalid).
 
 ```ts
-import { getGenderFromPesel } from "polish-identification-numbers";
+import { getGenderFromPesel, Gender } from "polish-identification-numbers";
 
-getDateOfBirthFromPesel("02321144427"); // "female"
+const gender: Gender = getGenderFromPesel("02321144427"); // -> "female"
 ```
 
 ### `isValidPesel`
+
+Returns `boolean`.
 
 ```ts
 import { isValidPesel } from "polish-identification-numbers";
@@ -82,7 +90,7 @@ isValidPesel("02261773497");
 
 ### `isValidRegon`
 
-Works for both 9-digit and 14-digit numbers.
+Works for both 9-digit and 14-digit numbers. Returns `boolean`.
 
 ```ts
 import { isValidRegon } from "polish-identification-numbers";
