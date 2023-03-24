@@ -29,17 +29,18 @@ $ yarn add polish-identification-numbers
 
 ### `isValidIdentityCardNumber`
 
-Returns `boolean`.
+Returns `boolean`. Supports lower case letters.
 
 ```ts
 import { isValidIdentityCardNumber } from "polish-identification-numbers";
 
-isValidIdentityCardNumber("AAA000000");
+isValidIdentityCardNumber("AAA000000"); // -> true
+isValidIdentityCardNumber("aaa000000"); // -> true
 ```
 
 ### `isValidNip`
 
-Returns `boolean`.
+Returns `boolean`. NIP with hyphens is not supported. Use the built-in `replaceAll` method to remove them.
 
 ```ts
 import { isValidNip } from "polish-identification-numbers";
@@ -50,12 +51,13 @@ isValidNip("123-456-32-18".replaceAll("-", ""));
 
 ### `isValidPassportNumber`
 
-Returns `boolean`.
+Returns `boolean`. Supports lower case letters.
 
 ```ts
 import { isValidPassportNumber } from "polish-identification-numbers";
 
-isValidPassportNumber("CC7999486");
+isValidPassportNumber("CC7999486"); // -> true
+isValidPassportNumber("cc7999486"); // -> true
 ```
 
 ### `getDateOfBirthFromPesel`
@@ -90,7 +92,7 @@ isValidPesel("02261773497");
 
 ### `isValidRegon`
 
-Works for both 9-digit and 14-digit numbers. Returns `boolean`.
+Returns `boolean`. Supports both 9 and 14 digit numbers.
 
 ```ts
 import { isValidRegon } from "polish-identification-numbers";
