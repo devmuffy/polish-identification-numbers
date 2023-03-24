@@ -1,6 +1,6 @@
 {
   "name": "polish-identification-numbers",
-  "version": "3.0.0-next.0",
+  "version": "3.0.0-next.1",
   "license": "MIT",
   "author": "Sebastian Fituch <sitemax@gmail.com>",
   "description": "A library for validating identity card, NIP, PESEL and REGON numbers. Simple and written in TypeScript.",
